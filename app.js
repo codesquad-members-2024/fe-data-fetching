@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import indexRouter from './routes/index.js';
+import newsTitleRouter from './routes/newsTitle.js';
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/newTitle', newsTitleRouter);
+
 
 app.use((req, res, next) => {
   next(createError(404));
@@ -33,6 +36,9 @@ app.use((err, req, res, next) => {
 
   res.status(err.status || 500);
   res.render('error');
+  res.send('Error ' + err.status || 500);
 });
+
+
 
 export default app;
