@@ -1,0 +1,55 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  margin: auto;
+  gap: 30px;
+}
+
+main button {
+  width: 380px;
+  height: 50px;
+  background-color: rgb(35, 92, 117);
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+}
+
+ul {
+  border-radius: 20px;
+  padding: 30px 20px;
+  background-color: rgb(245, 248, 249);
+  list-style-type: none;
+  min-height: 700px;
+  width: 350px;
+}
+
+li {
+  margin-bottom: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: rgb(110, 111, 112);
+}
+
+.news-content-box {
+  width: 800px;
+  padding: 30px 40px;
+  background-color: rgb(245, 248, 249);
+  border-radius: 20px;
+}
+
+.news-content-box p {
+  color: rgb(110, 111, 112);
+}
+
+.news-title-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
