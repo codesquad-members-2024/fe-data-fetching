@@ -1,9 +1,15 @@
-var express = require("express");
-var path = require('path');
-var router = express.Router();
+// routes/news.js
+import express from 'express';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-router.get("/", function (req, res, next) {
-    res.sendFile(path.join(__dirname, '../views/index.html'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const router = express.Router();
+
+router.get("/", (req, res, next) => {
+    res.sendFile(join(__dirname, '../views/index.html'));
 });
 
-module.exports = router;
+export default router;
