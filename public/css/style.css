@@ -1,0 +1,45 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrap {
+  padding: 30px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  width: 900px;
+  height: 600px;
+}
+
+.news-list {
+  width: 40%;
+}
+
+.title-list {
+  background-color: rgb(210, 200, 255);
+  height: 530px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.update {
+  height: 50px;
+  width: 100%;
+  background-color: rgb(128, 100, 251);
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: white;
+}
+
+.news-content {
+  width: 60%;
+}
+
+.news-article {
+  background-color: rgb(210, 200, 255);
+  height: 100%;
+  border-radius: 10px;
+  margin-left: 20px;
+}
