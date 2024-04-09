@@ -21,8 +21,12 @@ body {
   height: 530px;
   border-radius: 10px;
   margin-top: 20px;
+  p {
+    white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈 방지 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 말줄임 */
+  }
 }
-
 .update {
   height: 50px;
   width: 100%;
