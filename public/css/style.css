@@ -1,3 +1,5 @@
+@import "./reset.css";
+
 body {
   display: flex;
   flex-direction: column;
@@ -21,10 +23,14 @@ body {
   height: 530px;
   border-radius: 10px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   p {
     white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈 방지 */
     overflow: hidden;
     text-overflow: ellipsis; /* 말줄임 */
+    margin: auto 10px;
   }
 }
 .update {
