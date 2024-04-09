@@ -1,5 +1,5 @@
 import express from "express";
-import newsTitle from "../public/javascripts/data/newsTitle.json" assert{ type: "json"} ;;
+import newsTitle from "../public/src/data/newsTitle.json" assert{ type: "json"} ;;
 
 const router = express.Router();
 
