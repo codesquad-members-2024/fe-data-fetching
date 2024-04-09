@@ -1,8 +1,8 @@
 import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
-import cookieParser from 'cookie-parser'; //npm i --save-dev @types/cookie-parser
-import logger from 'morgan'; //npm i --save-dev @types/morgan
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
