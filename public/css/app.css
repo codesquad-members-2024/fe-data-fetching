@@ -44,10 +44,6 @@ li {
   border-radius: 20px;
 }
 
-.news-content-box p {
-  color: rgb(110, 111, 112);
-}
-
 .news-title-box {
   display: flex;
   align-items: center;

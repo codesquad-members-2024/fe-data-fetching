@@ -10,11 +10,16 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", async (req, res) => {
   try {
-    const response = await axios.get(
-      "https://newsapi.org/v2/top-headlines?country=kr&apiKey=693f3799981248d6b896d0385ee5a7a6"
+    const response = await fetch(
+      "https://newsapi.org/v2/top-headlines?country=kr&apiKey=c872dc5c3a7546958dcb2c8b41c4d624"
     );
-    const datas = response.data.articles;
-    res.render("home", { datas });
+    if (response.ok) {
+      const newsData = await response.json();
+      const newsArticles = newsData.articles;
+      res.render("home", { newsArticles });
+    } else {
+      console.error("Failed to update news");
+    }
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).json({ error: "Failed to fetch data" });

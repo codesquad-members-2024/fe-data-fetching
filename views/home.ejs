@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>실시간 TOP NEWS</title>
     <link rel="stylesheet" href="/css/app.css" />
   </head>
   <body>
@@ -12,15 +12,17 @@
         <div class="news-title-box">
           <button>업데이트</button>
           <ul>
-            <% for(const data of datas) {%>
-            <li><%=data.title %></li>
+            <% for(const news of newsArticles) {%>
+            <li><%=news.title %></li>
             <% }%>
           </ul>
         </div>
         <div class="news-content-box">
-          <p><%= datas[0].description %></p>
+          <h2><%= newsArticles[0].title%></h2>
+          <p><%= newsArticles[0].description %></p>
         </div>
       </main>
     </div>
+    <script src="/js/home.js"></script>
   </body>
 </html>
