@@ -1,5 +1,3 @@
-let click; 
-
 function getNewsData() {
   fetch("/news")
     .then((response) => response.json())
@@ -11,24 +9,27 @@ function getNewsData() {
       });
 
       titleEventListener(titleList, newsArticle, data);
+
+      const firstPTag = document.querySelectorAll(".title-list p")[0];
+      firstPTag.click();
     })
     .catch((error) => console.error("Error fetching news:", error));
 }
 
 function titleEventListener(titleList, newsArticle, data) {
+  let click;
+
   titleList.addEventListener("click", function (event) {
     if (event.target.tagName === "P") {
       const index = Array.from(this.children).indexOf(event.target);
       const title = data.articles[index].title;
       const clicked = data.articles[index].description;
-      newsArticle.innerHTML = `<div>Loding ...</div>`;
-      
+      newsArticle.innerHTML = `<div>Loading ...</div>`;
+
       clearTimeout(click);
 
       click = setTimeout(() => {
-        newsArticle.innerHTML = `
-        <h3>${title}</h3>
-        <p>${clicked}</p>`;
+        newsArticle.innerHTML = `<h3>${title}</h3><p>${clicked}</p>`;
       }, 3000);
     }
   });
