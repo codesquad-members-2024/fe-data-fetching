@@ -7,6 +7,7 @@ import logger from 'morgan';
 
 import indexRouter from './routes/index.js';
 import newsTitleRouter from './routes/newsTitle.js';
+import newsContents from './routes/newsContents.js';
 
 const app = express();
 
@@ -23,7 +24,8 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/newTitle', newsTitleRouter);
+app.use('/newsTitle', newsTitleRouter);
+app.use('/newsContents', newsContents);
 
 
 app.use((req, res, next) => {

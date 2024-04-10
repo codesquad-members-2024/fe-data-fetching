@@ -34,38 +34,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { renderTimer, renderNewsList } from "../view/component.js";
-import { getNewsTitles } from "../model/newsAPI.js";
-function runTimer() {
-    var timer = 0;
-    var increase = setInterval(function () {
-        ++timer;
-        renderTimer(timer);
-    }, 1000);
-    var resetTimer = function () {
-        timer = 0;
-        renderTimer(timer);
-    };
-    resetTimer();
-}
-export var updateNews = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var titleList;
+var getNewsTitles = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var titleList, promise;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                runTimer();
-                return [4 /*yield*/, getNewsTitles()];
+                titleList = [];
+                return [4 /*yield*/, fetch("http://localhost:3000/newsTitle")
+                        .then(function (response) { return response.json(); })
+                        .then(function (json) { return titleList.push.apply(titleList, json); })];
             case 1:
-                titleList = _a.sent();
-                renderNewsList(titleList);
-                return [2 /*return*/];
+                promise = _a.sent();
+                return [2 /*return*/, titleList];
         }
     });
 }); };
-var showTargetNews = function () { };
-export var setEventHandler = function () {
-    var $updateBtn = document.querySelector(".update-button");
-    $updateBtn.addEventListener("click", updateNews);
-    var newsCategory = document.querySelector(".category-list");
-    newsCategory.addEventListener("click", showTargetNews);
-};
+export { getNewsTitles };
