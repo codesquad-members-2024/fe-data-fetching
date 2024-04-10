@@ -29,12 +29,24 @@ ul {
   width: 350px;
 }
 
+a {
+  color: rgb(110, 111, 112);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 li {
   margin-bottom: 20px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: rgb(110, 111, 112);
+}
+
+li.selected {
+  font-weight: bold;
+  color: black;
 }
 
 .news-content-box {

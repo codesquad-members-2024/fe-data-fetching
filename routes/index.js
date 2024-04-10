@@ -4,7 +4,7 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
-router.get("/news", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const filePath = path.join(__dirname, "../data/headlines.json");
     const data = fs.readFileSync(filePath, "utf-8");
