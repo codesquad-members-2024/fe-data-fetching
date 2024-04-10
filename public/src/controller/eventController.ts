@@ -1,29 +1,33 @@
-import { renderTimer, renderNewsList, renderNewsContent, renderLoading } from "../view/component.js"
+import { renderTimer, renderNewsList, renderNewsContent, renderLoading } from "../view/viewRenderer.js"
 import { getNewsTitles, getNewsContent } from "../model/newsAPI.js";
 import { NewsModel } from "../model/newsModel.js";
+
+const TIMER_INITIAL = 10
+const TIME_INTERVAL = 1000
+const TIMER_END_VALUE = 1
 
 let increase = null;
 const newsModel = new NewsModel();
 const runTimer = RunTimer();
 
 function RunTimer() {
-    let timer: number = 60;
+    let timer: number = TIMER_INITIAL;
 
     const startTimer = () => {
         renderTimer(timer);
         increase = setInterval(() => {
             timer--;
             renderTimer(timer);
-            if (timer < 1) {
+            if (timer < TIMER_END_VALUE) {
                 clearInterval(increase);
                 showSelectNews(newsModel.getNextNews());
             } 
-        }, 1000);
+        }, TIME_INTERVAL);
     }
 
     const stopTimer = () => {
         clearInterval(increase);
-        timer = 60;
+        timer = TIMER_INITIAL;
     }
 
     return { startTimer, stopTimer };

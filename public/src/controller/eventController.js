@@ -34,28 +34,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { renderTimer, renderNewsList, renderNewsContent, renderLoading } from "../view/component.js";
+import { renderTimer, renderNewsList, renderNewsContent, renderLoading } from "../view/viewRenderer.js";
 import { getNewsTitles, getNewsContent } from "../model/newsAPI.js";
 import { NewsModel } from "../model/newsModel.js";
+var TIMER_INITIAL = 10;
+var TIME_INTERVAL = 1000;
+var TIMER_END_VALUE = 1;
 var increase = null;
 var newsModel = new NewsModel();
 var runTimer = RunTimer();
 function RunTimer() {
-    var timer = 60;
+    var timer = TIMER_INITIAL;
     var startTimer = function () {
         renderTimer(timer);
         increase = setInterval(function () {
             timer--;
             renderTimer(timer);
-            if (timer < 1) {
+            if (timer < TIMER_END_VALUE) {
                 clearInterval(increase);
                 showSelectNews(newsModel.getNextNews());
             }
-        }, 1000);
+        }, TIME_INTERVAL);
     };
     var stopTimer = function () {
         clearInterval(increase);
-        timer = 60;
+        timer = TIMER_INITIAL;
     };
     return { startTimer: startTimer, stopTimer: stopTimer };
 }

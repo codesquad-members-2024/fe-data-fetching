@@ -1,3 +1,4 @@
+const REQUEST_DELAY = 2000
 let controller = null;
 
 const getNewsContent = async (selectTitle: string) => {
@@ -7,7 +8,7 @@ const getNewsContent = async (selectTitle: string) => {
 
     try {
         const response = await fetch("http://localhost:3000/newsContents", { signal: controller.signal });
-        await delay(5000);
+        await delay(REQUEST_DELAY);
         const json = await response.json();
         const selectNewsContent = json.find(curContent => curContent.title === selectTitle);
         return selectNewsContent;

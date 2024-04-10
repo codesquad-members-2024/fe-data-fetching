@@ -34,6 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var REQUEST_DELAY = 2000;
 var controller = null;
 var getNewsContent = function (selectTitle) { return __awaiter(void 0, void 0, void 0, function () {
     var response, json, selectNewsContent, error_1;
@@ -49,7 +50,7 @@ var getNewsContent = function (selectTitle) { return __awaiter(void 0, void 0, v
                 return [4 /*yield*/, fetch("http://localhost:3000/newsContents", { signal: controller.signal })];
             case 2:
                 response = _a.sent();
-                return [4 /*yield*/, delay(5000)];
+                return [4 /*yield*/, delay(REQUEST_DELAY)];
             case 3:
                 _a.sent();
                 return [4 /*yield*/, response.json()];
