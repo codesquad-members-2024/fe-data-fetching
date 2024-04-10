@@ -34,6 +34,7 @@ function RunTimer() {
 }
 
 export const initData = async() => {
+    console.log(11)
     const titleList = await getNewsTitles()
     newsModel.setTitleList(titleList)
     renderNewsList(titleList)
@@ -50,8 +51,14 @@ const showSelectNews = async(select: string) => {
 }
 
 export const setEventHandler = (): void => {
-    const $updateBtn: Element = document.querySelector(".update-button")
-    $updateBtn.addEventListener("click", initData)
+    const $updateBtn: HTMLButtonElement = document.querySelector(".update-button")
+    $updateBtn.addEventListener("click", async() => {
+        if (!$updateBtn.disabled) {
+            $updateBtn.disabled = true;
+            await initData()
+            $updateBtn.disabled = false;
+        }
+    });
 
     const newsCategory: Element = document.querySelector(".category-list");
     newsCategory.addEventListener("click", async(e) => {

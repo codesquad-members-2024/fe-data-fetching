@@ -66,7 +66,9 @@ export var initData = function () { return __awaiter(void 0, void 0, void 0, fun
     var titleList;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getNewsTitles()];
+            case 0:
+                console.log(11);
+                return [4 /*yield*/, getNewsTitles()];
             case 1:
                 titleList = _a.sent();
                 newsModel.setTitleList(titleList);
@@ -95,7 +97,21 @@ var showSelectNews = function (select) { return __awaiter(void 0, void 0, void 0
 }); };
 export var setEventHandler = function () {
     var $updateBtn = document.querySelector(".update-button");
-    $updateBtn.addEventListener("click", initData);
+    $updateBtn.addEventListener("click", function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!!$updateBtn.disabled) return [3 /*break*/, 2];
+                    $updateBtn.disabled = true;
+                    return [4 /*yield*/, initData()];
+                case 1:
+                    _a.sent();
+                    $updateBtn.disabled = false;
+                    _a.label = 2;
+                case 2: return [2 /*return*/];
+            }
+        });
+    }); });
     var newsCategory = document.querySelector(".category-list");
     newsCategory.addEventListener("click", function (e) { return __awaiter(void 0, void 0, void 0, function () {
         var selectTitle;
