@@ -3,14 +3,9 @@ interface NewsItem {
     title: string;
 }
 
-const getTimerTemplate = (curTime: number): string => {
-    return `${curTime}초뒤에 자동 업데이트`
-}
-
 const renderTimer = (time: number): void => {
-    const timerTemplate: string = getTimerTemplate(time);
     const timerContainer: HTMLElement = document.querySelector(".current-second");
-    timerContainer.textContent = timerTemplate;
+    timerContainer.textContent = `${time}초뒤에 자동 업데이트`;
 };
 
 const renderNewsList = (list: NewsItem[]) => {
@@ -21,5 +16,13 @@ const renderNewsList = (list: NewsItem[]) => {
     listContainer.innerHTML = listTemplate;
 }
 
+const renderNewsContent = (selectContent) => {
+    const mainNewsContainer = document.querySelector(".main-news-section")
+    mainNewsContainer.innerHTML = `
+    <div class="main-news-title">${selectContent.title}</div>
+    <div class="main-news-content">${selectContent.content}</div>
+    `
+}
 
-export { getTimerTemplate, renderTimer, renderNewsList }
+
+export { renderTimer, renderNewsList, renderNewsContent }

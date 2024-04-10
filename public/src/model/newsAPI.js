@@ -35,18 +35,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var getNewsTitles = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var titleList, promise;
+    var response, json;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                titleList = [];
-                return [4 /*yield*/, fetch("http://localhost:3000/newsTitle")
-                        .then(function (response) { return response.json(); })
-                        .then(function (json) { return titleList.push.apply(titleList, json); })];
+            case 0: return [4 /*yield*/, fetch("http://localhost:3000/newsTitle")];
             case 1:
-                promise = _a.sent();
-                return [2 /*return*/, titleList];
+                response = _a.sent();
+                return [4 /*yield*/, response.json()];
+            case 2:
+                json = _a.sent();
+                return [2 /*return*/, json];
         }
     });
 }); };
-export { getNewsTitles };
+var getNewsContent = function (selectTitle) { return __awaiter(void 0, void 0, void 0, function () {
+    var response, json, selectNewsContent;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fetch("http://localhost:3000/newsContents")];
+            case 1:
+                response = _a.sent();
+                return [4 /*yield*/, response.json()];
+            case 2:
+                json = _a.sent();
+                selectNewsContent = json.find(function (curContent) { return curContent.title === selectTitle; });
+                return [2 /*return*/, selectNewsContent];
+        }
+    });
+}); };
+export { getNewsTitles, getNewsContent };

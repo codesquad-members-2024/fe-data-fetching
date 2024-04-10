@@ -34,8 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { renderTimer, renderNewsList } from "../view/component.js";
-import { getNewsTitles } from "../model/newsAPI.js";
+import { renderTimer, renderNewsList, renderNewsContent } from "../view/component.js";
+import { getNewsTitles, getNewsContent } from "../model/newsAPI.js";
 function runTimer() {
     var timer = 0;
     var increase = setInterval(function () {
@@ -58,14 +58,26 @@ export var updateNews = function () { return __awaiter(void 0, void 0, void 0, f
             case 1:
                 titleList = _a.sent();
                 renderNewsList(titleList);
+                showSelectNews(titleList[0].title);
                 return [2 /*return*/];
         }
     });
 }); };
-var showTargetNews = function () { };
+var showSelectNews = function (select) { return __awaiter(void 0, void 0, void 0, function () {
+    var selectContent;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getNewsContent(select)];
+            case 1:
+                selectContent = _a.sent();
+                renderNewsContent(selectContent);
+                return [2 /*return*/];
+        }
+    });
+}); };
 export var setEventHandler = function () {
     var $updateBtn = document.querySelector(".update-button");
     $updateBtn.addEventListener("click", updateNews);
-    var newsCategory = document.querySelector(".category-list");
-    newsCategory.addEventListener("click", showTargetNews);
+    // const newsCategory: Element = document.querySelector(".category-list")
+    // newsCategory.addEventListener("click", showSelectNews)
 };

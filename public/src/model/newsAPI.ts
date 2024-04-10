@@ -1,11 +1,14 @@
-const getNewsTitles = async() => {
-    const titleList = []
-
-    const promise = await fetch("http://localhost:3000/newsTitle")
-        .then((response) => response.json())
-        .then((json) => titleList.push(...json));
-
-    return titleList
+const getNewsTitles = async () => {
+    const response = await fetch("http://localhost:3000/newsTitle");
+    const json = await response.json();
+    return json;
 };
 
-export {getNewsTitles}
+const getNewsContent = async (selectTitle: string) => {
+    const response = await fetch("http://localhost:3000/newsContents");
+    const json = await response.json();
+    const selectNewsContent = json.find(curContent => curContent.title === selectTitle);
+    return selectNewsContent
+};
+
+export { getNewsTitles, getNewsContent };

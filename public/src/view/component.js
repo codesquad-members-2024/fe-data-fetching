@@ -1,10 +1,6 @@
-var getTimerTemplate = function (curTime) {
-    return "".concat(curTime, "\uCD08\uB4A4\uC5D0 \uC790\uB3D9 \uC5C5\uB370\uC774\uD2B8");
-};
 var renderTimer = function (time) {
-    var timerTemplate = getTimerTemplate(time);
     var timerContainer = document.querySelector(".current-second");
-    timerContainer.textContent = timerTemplate;
+    timerContainer.textContent = "".concat(time, "\uCD08\uB4A4\uC5D0 \uC790\uB3D9 \uC5C5\uB370\uC774\uD2B8");
 };
 var renderNewsList = function (list) {
     var listContainer = document.querySelector(".category-list");
@@ -13,4 +9,8 @@ var renderNewsList = function (list) {
     }, "");
     listContainer.innerHTML = listTemplate;
 };
-export { getTimerTemplate, renderTimer, renderNewsList };
+var renderNewsContent = function (selectContent) {
+    var mainNewsContainer = document.querySelector(".main-news-section");
+    mainNewsContainer.innerHTML = "\n    <div class=\"main-news-title\">".concat(selectContent.title, "</div>\n    <div class=\"main-news-content\">").concat(selectContent.content, "</div>\n    ");
+};
+export { renderTimer, renderNewsList, renderNewsContent };
