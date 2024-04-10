@@ -1,12 +1,12 @@
-import { renderTimer, renderNewsList, renderNewsContent } from "../view/component.js"
+import { renderTimer, renderNewsList, renderNewsContent, renderLoading } from "../view/component.js"
 import { getNewsTitles, getNewsContent } from "../model/newsAPI.js";
 
-function runTimer() {
+function RunTimer() {
     let timer: number = 0;
 
     const increase = setInterval(() => {
-        ++timer;
         renderTimer(timer);
+        ++timer;
     }, 1000);
 
     const resetTimer = () => {
@@ -14,17 +14,24 @@ function runTimer() {
         renderTimer(timer)
     }
 
-    resetTimer();
+    return {resetTimer}
 }
 
+const runTimer = RunTimer()
+
 export const updateNews = async() => {
-    runTimer()
+    runTimer.resetTimer()
     const titleList = await getNewsTitles()
     renderNewsList(titleList)
     showSelectNews(titleList[0].title)
 }
 
+const delay = (ms:number) => new Promise((resolve) => setTimeout(resolve, ms))
+
 const showSelectNews = async(select: string) => {
+    renderLoading()
+    await delay(1000)
+    runTimer.resetTimer()
     const selectContent = await getNewsContent(select)
     renderNewsContent(selectContent)
 }
@@ -39,5 +46,3 @@ export const setEventHandler = (): void => {
         if ((e.target as Element).className !== "category-list") showSelectNews(selectTitle)
     });
 }
-
-

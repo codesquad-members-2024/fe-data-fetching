@@ -13,4 +13,8 @@ var renderNewsContent = function (selectContent) {
     var mainNewsContainer = document.querySelector(".main-news-section");
     mainNewsContainer.innerHTML = "\n    <div class=\"main-news-title\">".concat(selectContent.title, "</div>\n    <div class=\"main-news-content\">").concat(selectContent.content, "</div>\n    ");
 };
-export { renderTimer, renderNewsList, renderNewsContent };
+var renderLoading = function () {
+    var mainNewsContainer = document.querySelector(".main-news-section");
+    mainNewsContainer.innerHTML = "<div class = \"loading\">Loading...</div>";
+};
+export { renderTimer, renderNewsList, renderNewsContent, renderLoading };

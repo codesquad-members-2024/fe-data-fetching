@@ -34,26 +34,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { renderTimer, renderNewsList, renderNewsContent } from "../view/component.js";
+import { renderTimer, renderNewsList, renderNewsContent, renderLoading } from "../view/component.js";
 import { getNewsTitles, getNewsContent } from "../model/newsAPI.js";
-function runTimer() {
+function RunTimer() {
     var timer = 0;
     var increase = setInterval(function () {
-        ++timer;
         renderTimer(timer);
+        ++timer;
     }, 1000);
     var resetTimer = function () {
         timer = 0;
         renderTimer(timer);
     };
-    resetTimer();
+    return { resetTimer: resetTimer };
 }
+var runTimer = RunTimer();
 export var updateNews = function () { return __awaiter(void 0, void 0, void 0, function () {
     var titleList;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                runTimer();
+                runTimer.resetTimer();
                 return [4 /*yield*/, getNewsTitles()];
             case 1:
                 titleList = _a.sent();
@@ -63,12 +64,19 @@ export var updateNews = function () { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); };
+var delay = function (ms) { return new Promise(function (resolve) { return setTimeout(resolve, ms); }); };
 var showSelectNews = function (select) { return __awaiter(void 0, void 0, void 0, function () {
     var selectContent;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getNewsContent(select)];
+            case 0:
+                renderLoading();
+                return [4 /*yield*/, delay(1000)];
             case 1:
+                _a.sent();
+                runTimer.resetTimer();
+                return [4 /*yield*/, getNewsContent(select)];
+            case 2:
                 selectContent = _a.sent();
                 renderNewsContent(selectContent);
                 return [2 /*return*/];

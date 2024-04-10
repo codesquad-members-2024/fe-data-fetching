@@ -24,5 +24,10 @@ const renderNewsContent = (selectContent) => {
     `
 }
 
+const renderLoading = () => {
+    const mainNewsContainer = document.querySelector(".main-news-section")
+    mainNewsContainer.innerHTML = `<div class = "loading">Loading...</div>`
+}
 
-export { renderTimer, renderNewsList, renderNewsContent }
+
+export { renderTimer, renderNewsList, renderNewsContent, renderLoading }
