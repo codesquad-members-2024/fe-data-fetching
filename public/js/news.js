@@ -1,3 +1,5 @@
+let click; 
+
 function getNewsData() {
   fetch("/users")
     .then((response) => response.json())
@@ -18,7 +20,13 @@ function titleEventListener(titleList, newsArticle, data) {
     if (event.target.tagName === "P") {
       const index = Array.from(this.children).indexOf(event.target);
       const clicked = data.articles[index].description;
-      newsArticle.innerHTML = `<p>${clicked}</p>`;
+      newsArticle.innerHTML = `<div>Loding...</div>`;
+      
+      clearTimeout(click);
+
+      click = setTimeout(() => {
+        newsArticle.innerHTML = `<p>${clicked}</p>`;
+      }, 3000);
     }
   });
 }
