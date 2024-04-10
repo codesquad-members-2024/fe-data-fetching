@@ -58,6 +58,9 @@ body {
     margin: auto;
     font-size: 2rem;
   }
+  h3 {
+    margin: 10px 30px;
+  }
   p {
     margin: 0px 30px;
     line-height: 1.5;

@@ -1,7 +1,7 @@
 let click; 
 
 function getNewsData() {
-  fetch("/users")
+  fetch("/news")
     .then((response) => response.json())
     .then((data) => {
       const titleList = document.querySelector(".title-list");
@@ -19,13 +19,16 @@ function titleEventListener(titleList, newsArticle, data) {
   titleList.addEventListener("click", function (event) {
     if (event.target.tagName === "P") {
       const index = Array.from(this.children).indexOf(event.target);
+      const title = data.articles[index].title;
       const clicked = data.articles[index].description;
-      newsArticle.innerHTML = `<div>Loding...</div>`;
+      newsArticle.innerHTML = `<div>Loding ...</div>`;
       
       clearTimeout(click);
 
       click = setTimeout(() => {
-        newsArticle.innerHTML = `<p>${clicked}</p>`;
+        newsArticle.innerHTML = `
+        <h3>${title}</h3>
+        <p>${clicked}</p>`;
       }, 3000);
     }
   });
