@@ -33,8 +33,11 @@ export const setEventHandler = (): void => {
     const $updateBtn: Element = document.querySelector(".update-button")
     $updateBtn.addEventListener("click", updateNews)
 
-    // const newsCategory: Element = document.querySelector(".category-list")
-    // newsCategory.addEventListener("click", showSelectNews)
+    const newsCategory: Element = document.querySelector(".category-list");
+    newsCategory.addEventListener("click", (e) => {
+        const selectTitle = (e.target as Element).textContent;
+        if ((e.target as Element).className !== "category-list") showSelectNews(selectTitle)
+    });
 }
 
 

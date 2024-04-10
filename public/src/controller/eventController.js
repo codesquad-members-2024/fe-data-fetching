@@ -78,6 +78,10 @@ var showSelectNews = function (select) { return __awaiter(void 0, void 0, void 0
 export var setEventHandler = function () {
     var $updateBtn = document.querySelector(".update-button");
     $updateBtn.addEventListener("click", updateNews);
-    // const newsCategory: Element = document.querySelector(".category-list")
-    // newsCategory.addEventListener("click", showSelectNews)
+    var newsCategory = document.querySelector(".category-list");
+    newsCategory.addEventListener("click", function (e) {
+        var selectTitle = e.target.textContent;
+        if (e.target.className !== "category-list")
+            showSelectNews(selectTitle);
+    });
 };
