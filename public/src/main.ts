@@ -1,6 +1,6 @@
-import { setEventHandler, updateNews } from "./controller/eventController.js";
+import { setEventHandler, initData } from "./controller/eventController.js";
 
-updateNews()
+initData()
 setEventHandler()
 
 

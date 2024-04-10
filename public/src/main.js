@@ -1,3 +1,3 @@
-import { setEventHandler, updateNews } from "./controller/eventController.js";
-updateNews();
+import { setEventHandler, initData } from "./controller/eventController.js";
+initData();
 setEventHandler();

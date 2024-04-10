@@ -49,7 +49,7 @@ var getNewsContent = function (selectTitle) { return __awaiter(void 0, void 0, v
                 return [4 /*yield*/, fetch("http://localhost:3000/newsContents", { signal: controller.signal })];
             case 2:
                 response = _a.sent();
-                return [4 /*yield*/, delay(2000)];
+                return [4 /*yield*/, delay(5000)];
             case 3:
                 _a.sent();
                 return [4 /*yield*/, response.json()];

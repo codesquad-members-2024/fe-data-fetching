@@ -1,41 +1,53 @@
 import { renderTimer, renderNewsList, renderNewsContent, renderLoading } from "../view/component.js"
 import { getNewsTitles, getNewsContent } from "../model/newsAPI.js";
+import { NewsModel } from "../model/newsModel.js";
+
+let increase = null;
+const newsModel = new NewsModel();
+const runTimer = RunTimer();
 
 function RunTimer() {
-    let timer: number = 0;
+    let timer: number = 60;
 
-    const increase = setInterval(() => {
+    const startTimer = () => {
         renderTimer(timer);
-        ++timer;
-    }, 1000);
-
-    const resetTimer = () => {
-        timer = 0
-        renderTimer(timer)
+        increase = setInterval(() => {
+            timer--;
+            renderTimer(timer);
+            if (timer < 1) {
+                clearInterval(increase);
+                showSelectNews(newsModel.getNextNews());
+            } 
+        }, 1000);
     }
 
-    return {resetTimer}
+    const stopTimer = () => {
+        clearInterval(increase);
+        timer = 60;
+    }
+
+    return { startTimer, stopTimer };
 }
 
-const runTimer = RunTimer()
-
-export const updateNews = async() => {
+export const initData = async() => {
     const titleList = await getNewsTitles()
-    runTimer.resetTimer()
+    newsModel.setTitleList(titleList)
     renderNewsList(titleList)
-    showSelectNews(titleList[0].title)
+    showSelectNews(newsModel.getNewsData())
 }
 
 const showSelectNews = async(select: string) => {
+    newsModel.updateNewsIndex(select)
+    runTimer.stopTimer()
     renderLoading()
     const selectContent = await getNewsContent(select)
     renderNewsContent(selectContent)
-    runTimer.resetTimer()
+    runTimer.startTimer()
 }
 
 export const setEventHandler = (): void => {
     const $updateBtn: Element = document.querySelector(".update-button")
-    $updateBtn.addEventListener("click", updateNews)
+    $updateBtn.addEventListener("click", initData)
 
     const newsCategory: Element = document.querySelector(".category-list");
     newsCategory.addEventListener("click", async(e) => {

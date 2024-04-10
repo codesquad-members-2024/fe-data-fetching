@@ -36,29 +36,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { renderTimer, renderNewsList, renderNewsContent, renderLoading } from "../view/component.js";
 import { getNewsTitles, getNewsContent } from "../model/newsAPI.js";
-function RunTimer() {
-    var timer = 0;
-    var increase = setInterval(function () {
-        renderTimer(timer);
-        ++timer;
-    }, 1000);
-    var resetTimer = function () {
-        timer = 0;
-        renderTimer(timer);
-    };
-    return { resetTimer: resetTimer };
-}
+import { NewsModel } from "../model/newsModel.js";
+var increase = null;
+var newsModel = new NewsModel();
 var runTimer = RunTimer();
-export var updateNews = function () { return __awaiter(void 0, void 0, void 0, function () {
+function RunTimer() {
+    var timer = 60;
+    var startTimer = function () {
+        renderTimer(timer);
+        increase = setInterval(function () {
+            timer--;
+            renderTimer(timer);
+            if (timer < 1) {
+                clearInterval(increase);
+                showSelectNews(newsModel.getNextNews());
+            }
+        }, 1000);
+    };
+    var stopTimer = function () {
+        clearInterval(increase);
+        timer = 60;
+    };
+    return { startTimer: startTimer, stopTimer: stopTimer };
+}
+export var initData = function () { return __awaiter(void 0, void 0, void 0, function () {
     var titleList;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, getNewsTitles()];
             case 1:
                 titleList = _a.sent();
-                runTimer.resetTimer();
+                newsModel.setTitleList(titleList);
                 renderNewsList(titleList);
-                showSelectNews(titleList[0].title);
+                showSelectNews(newsModel.getNewsData());
                 return [2 /*return*/];
         }
     });
@@ -68,19 +78,21 @@ var showSelectNews = function (select) { return __awaiter(void 0, void 0, void 0
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                newsModel.updateNewsIndex(select);
+                runTimer.stopTimer();
                 renderLoading();
                 return [4 /*yield*/, getNewsContent(select)];
             case 1:
                 selectContent = _a.sent();
                 renderNewsContent(selectContent);
-                runTimer.resetTimer();
+                runTimer.startTimer();
                 return [2 /*return*/];
         }
     });
 }); };
 export var setEventHandler = function () {
     var $updateBtn = document.querySelector(".update-button");
-    $updateBtn.addEventListener("click", updateNews);
+    $updateBtn.addEventListener("click", initData);
     var newsCategory = document.querySelector(".category-list");
     newsCategory.addEventListener("click", function (e) { return __awaiter(void 0, void 0, void 0, function () {
         var selectTitle;

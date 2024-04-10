@@ -28,12 +28,12 @@ section {
 }
 
 .update-section {
-    width: 200px;
-    height: 400px;
+    width: 400px;
+    height: 600px;
 }
 .main-news-section {
-    width: 500px;
-    height: 400px;
+    width: 700px;
+    height: 600px;
 }
 
 .border {
@@ -71,6 +71,7 @@ li {
     text-align: right;
     color: red;
     font-size: small;
+    height: 15px;
 }
 
 .main-news-title {
@@ -82,4 +83,9 @@ li {
 .main-news-content {
     font-size: medium;
     padding: 10px;
+}
+
+li:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }

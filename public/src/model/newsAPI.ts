@@ -7,7 +7,7 @@ const getNewsContent = async (selectTitle: string) => {
 
     try {
         const response = await fetch("http://localhost:3000/newsContents", { signal: controller.signal });
-        await delay(2000);
+        await delay(5000);
         const json = await response.json();
         const selectNewsContent = json.find(curContent => curContent.title === selectTitle);
         return selectNewsContent;
