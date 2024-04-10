@@ -13,13 +13,13 @@
           <button>업데이트</button>
           <ul>
             <% for(const news of newsArticles) {%>
-            <li><a href="news/<%= news.source.id %>"><%=news.title %></a></li>
+            <li><a href="<%= news.source.id %>"><%=news.title %></a></li>
             <% }%>
           </ul>
         </div>
         <div class="news-content-box">
-          <h2><%= newsArticles[0].title%></h2>
-          <p><%= newsArticles[0].content %></p>
+          <h2><%= newsArticles[id].title%></h2>
+          <p><%= newsArticles[id].content %></p>
         </div>
       </main>
     </div>
