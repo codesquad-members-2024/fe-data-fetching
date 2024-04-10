@@ -9,22 +9,14 @@
   <body>
     <div class="wrap">
       <main>
+        <div class="loading hide">로딩 중!!!!</div>
         <div class="news-title-box">
           <button>업데이트</button>
-          <ul>
-            <% newsArticles.forEach((news, index) => { %>
-              <li <%= index === 0 ? 'class=selected' : '' %>>
-                <a href="news/<%= news.source.id %>"><%= news.title %></a>
-              </li>
-            <% }); %>
-          </ul>
+          <ul class="news-title-list"></ul>
         </div>
-        <div class="news-content-box">
-          <h2><%= newsArticles[0].title%></h2>
-          <p><%= newsArticles[0].content %></p>
-        </div>
+        <div class="news-content-box"></div>
       </main>
     </div>
-    <script type="module" src="/js/home.js"></script>
+    <script type="module" src="/js/index.js"></script>
   </body>
 </html>
