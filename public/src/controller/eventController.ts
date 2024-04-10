@@ -20,20 +20,17 @@ function RunTimer() {
 const runTimer = RunTimer()
 
 export const updateNews = async() => {
-    runTimer.resetTimer()
     const titleList = await getNewsTitles()
+    runTimer.resetTimer()
     renderNewsList(titleList)
     showSelectNews(titleList[0].title)
 }
 
-const delay = (ms:number) => new Promise((resolve) => setTimeout(resolve, ms))
-
 const showSelectNews = async(select: string) => {
     renderLoading()
-    await delay(1000)
-    runTimer.resetTimer()
     const selectContent = await getNewsContent(select)
     renderNewsContent(selectContent)
+    runTimer.resetTimer()
 }
 
 export const setEventHandler = (): void => {
@@ -41,7 +38,7 @@ export const setEventHandler = (): void => {
     $updateBtn.addEventListener("click", updateNews)
 
     const newsCategory: Element = document.querySelector(".category-list");
-    newsCategory.addEventListener("click", (e) => {
+    newsCategory.addEventListener("click", async(e) => {
         const selectTitle = (e.target as Element).textContent;
         if ((e.target as Element).className !== "category-list") showSelectNews(selectTitle)
     });

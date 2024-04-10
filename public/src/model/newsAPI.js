@@ -34,6 +34,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var controller = null;
+var getNewsContent = function (selectTitle) { return __awaiter(void 0, void 0, void 0, function () {
+    var response, json, selectNewsContent, error_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (controller)
+                    controller.abort();
+                controller = new AbortController();
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 5, 6, 7]);
+                return [4 /*yield*/, fetch("http://localhost:3000/newsContents", { signal: controller.signal })];
+            case 2:
+                response = _a.sent();
+                return [4 /*yield*/, delay(2000)];
+            case 3:
+                _a.sent();
+                return [4 /*yield*/, response.json()];
+            case 4:
+                json = _a.sent();
+                selectNewsContent = json.find(function (curContent) { return curContent.title === selectTitle; });
+                return [2 /*return*/, selectNewsContent];
+            case 5:
+                error_1 = _a.sent();
+                console.error("Fetch error:", error_1);
+                throw error_1;
+            case 6:
+                controller = null;
+                return [7 /*endfinally*/];
+            case 7: return [2 /*return*/];
+        }
+    });
+}); };
 var getNewsTitles = function () { return __awaiter(void 0, void 0, void 0, function () {
     var response, json;
     return __generator(this, function (_a) {
@@ -48,19 +82,5 @@ var getNewsTitles = function () { return __awaiter(void 0, void 0, void 0, funct
         }
     });
 }); };
-var getNewsContent = function (selectTitle) { return __awaiter(void 0, void 0, void 0, function () {
-    var response, json, selectNewsContent;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("http://localhost:3000/newsContents")];
-            case 1:
-                response = _a.sent();
-                return [4 /*yield*/, response.json()];
-            case 2:
-                json = _a.sent();
-                selectNewsContent = json.find(function (curContent) { return curContent.title === selectTitle; });
-                return [2 /*return*/, selectNewsContent];
-        }
-    });
-}); };
+var delay = function (ms) { return new Promise(function (resolve) { return setTimeout(resolve, ms); }); };
 export { getNewsTitles, getNewsContent };

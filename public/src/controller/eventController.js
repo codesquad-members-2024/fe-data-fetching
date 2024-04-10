@@ -53,32 +53,27 @@ export var updateNews = function () { return __awaiter(void 0, void 0, void 0, f
     var titleList;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                runTimer.resetTimer();
-                return [4 /*yield*/, getNewsTitles()];
+            case 0: return [4 /*yield*/, getNewsTitles()];
             case 1:
                 titleList = _a.sent();
+                runTimer.resetTimer();
                 renderNewsList(titleList);
                 showSelectNews(titleList[0].title);
                 return [2 /*return*/];
         }
     });
 }); };
-var delay = function (ms) { return new Promise(function (resolve) { return setTimeout(resolve, ms); }); };
 var showSelectNews = function (select) { return __awaiter(void 0, void 0, void 0, function () {
     var selectContent;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 renderLoading();
-                return [4 /*yield*/, delay(1000)];
-            case 1:
-                _a.sent();
-                runTimer.resetTimer();
                 return [4 /*yield*/, getNewsContent(select)];
-            case 2:
+            case 1:
                 selectContent = _a.sent();
                 renderNewsContent(selectContent);
+                runTimer.resetTimer();
                 return [2 /*return*/];
         }
     });
@@ -87,9 +82,13 @@ export var setEventHandler = function () {
     var $updateBtn = document.querySelector(".update-button");
     $updateBtn.addEventListener("click", updateNews);
     var newsCategory = document.querySelector(".category-list");
-    newsCategory.addEventListener("click", function (e) {
-        var selectTitle = e.target.textContent;
-        if (e.target.className !== "category-list")
-            showSelectNews(selectTitle);
-    });
+    newsCategory.addEventListener("click", function (e) { return __awaiter(void 0, void 0, void 0, function () {
+        var selectTitle;
+        return __generator(this, function (_a) {
+            selectTitle = e.target.textContent;
+            if (e.target.className !== "category-list")
+                showSelectNews(selectTitle);
+            return [2 /*return*/];
+        });
+    }); });
 };
