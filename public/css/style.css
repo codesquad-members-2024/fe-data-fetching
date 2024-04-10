@@ -8,7 +8,6 @@ body {
 
 .wrap {
   padding: 10px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
   width: 900px;
   height: 600px;
@@ -18,21 +17,6 @@ body {
   width: 40%;
 }
 
-.title-list {
-  background-color: rgb(210, 200, 255);
-  height: 530px;
-  border-radius: 10px;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  p {
-    white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈 방지 */
-    overflow: hidden;
-    text-overflow: ellipsis; /* 말줄임 */
-    margin: auto 10px;
-  }
-}
 .update {
   height: 50px;
   width: 100%;
@@ -43,13 +27,35 @@ body {
   color: white;
 }
 
+.title-list {
+  height: 530px;
+  margin-top: 20px;
+  p {
+    white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈 방지 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 말줄임 */
+    margin: auto 10px;
+  }
+}
+
+.title-list,
+.news-article {
+  background-color: rgb(210, 200, 255);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .news-content {
   width: 60%;
 }
 
 .news-article {
-  background-color: rgb(210, 200, 255);
   height: 100%;
-  border-radius: 10px;
   margin-left: 20px;
+  p {
+    margin: 0px 30px;
+    line-height: 1.5;
+  }
 }
