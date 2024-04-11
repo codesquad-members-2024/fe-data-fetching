@@ -1,7 +1,12 @@
-export function displayNewsList(newsData) {
+export function displayNewsList(newsData, selectedId) {
   const newsList = document.querySelector(".news-title-box ul");
   const newsListHtml = newsData.reduce((html, news) => {
-    return html + `<li data-id=${news.id}><a>${news.title}</a></li>`;
+    return (
+      html +
+      `<li data-id=${news.id} class=${
+        news.id === selectedId ? "selected" : ""
+      }><a>${news.title}</a></li>`
+    );
   }, "");
   newsList.innerHTML = newsListHtml;
 }

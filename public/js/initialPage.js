@@ -9,6 +9,7 @@ export async function displayInitialPage() {
   const firstNewsId = newsTitleList[0].id;
   const selectedNews = await fetchData(`/api/news/${firstNewsId}`);
   toggleLoading(false);
-  displayNewsList(newsTitleList);
+  displayNewsList(newsTitleList, firstNewsId);
   displayNewsContent(selectedNews);
+  return newsTitleList;
 }
