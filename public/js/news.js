@@ -8,6 +8,10 @@ async function getNewsData() {
 
     const titleList = document.querySelector(".title-list");
     const newsArticle = document.querySelector(".news-article");
+    
+    if (titleList !== null) {
+      titleList.innerHTML = "";
+    }
 
     shuffledData.forEach((item) => {
       titleList.innerHTML += `<p>${item.title}</p>`;
@@ -40,7 +44,7 @@ function titleEventListener(titleList, newsArticle, data) {
       const delay = (ms) => new Promise((resolve) => {
           clickTitle = setTimeout(resolve, ms);
         });
-
+        
       await delay(3000);
       newsArticle.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
     }
