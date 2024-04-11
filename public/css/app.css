@@ -1,14 +1,13 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.wrap {
+  width: 1250px;
+  margin: 50px auto;
 }
 
 main {
   display: flex;
   margin: auto;
   gap: 30px;
+  justify-content: space-between;
 }
 
 main button {
@@ -35,6 +34,7 @@ a {
 }
 a:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 li {
