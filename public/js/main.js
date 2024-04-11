@@ -1,3 +1,9 @@
 import getNewsData from "./news.js";
+import onEvent from "./onEvent.js";
 
-getNewsData();
+function main() {
+  onEvent();
+  getNewsData();
+}
+
+main();
