@@ -1,6 +1,6 @@
 import getNewsData from './newsDataFetch.js';
 import { createListHTML, createDetailNewsHTML } from './contents.js';
-import { eventListenerHandeler } from './eventlistenrHandle';
+import eventHandler from './eventHandler.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const { status, articles: newsData } = await getNewsData();
@@ -9,4 +9,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         createListHTML(newsData);
         createDetailNewsHTML(newsData[0]);
     }
+    eventHandler();
 });
