@@ -42,8 +42,8 @@ var TIME_INTERVAL = 1000;
 var TIMER_END_VALUE = 1;
 var increase = null;
 var newsModel = new NewsModel();
-var runTimer = RunTimer();
-function RunTimer() {
+var timer = Timer();
+function Timer() {
     var timer = TIMER_INITIAL;
     var startTimer = function () {
         renderTimer(timer);
@@ -52,12 +52,13 @@ function RunTimer() {
             renderTimer(timer);
             if (timer < TIMER_END_VALUE) {
                 clearInterval(increase);
-                showSelectNews(newsModel.getNextNews());
+                initData();
             }
         }, TIME_INTERVAL);
     };
     var stopTimer = function () {
         clearInterval(increase);
+        renderLoading();
         timer = TIMER_INITIAL;
     };
     return { startTimer: startTimer, stopTimer: stopTimer };
@@ -66,49 +67,67 @@ export var initData = function () { return __awaiter(void 0, void 0, void 0, fun
     var titleList;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                console.log(11);
-                return [4 /*yield*/, getNewsTitles()];
+            case 0: return [4 /*yield*/, getNewsTitles()];
             case 1:
                 titleList = _a.sent();
-                newsModel.setTitleList(titleList);
+                newsModel.setTitleList(titleList.sort(function () { return Math.random() - 0.5; }));
                 renderNewsList(titleList);
-                showSelectNews(newsModel.getNewsData());
+                return [4 /*yield*/, showSelectNews(newsModel.getNewsData())];
+            case 2:
+                _a.sent();
                 return [2 /*return*/];
         }
     });
 }); };
 var showSelectNews = function (select) { return __awaiter(void 0, void 0, void 0, function () {
-    var selectContent;
+    var selectContent, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                newsModel.updateNewsIndex(select);
-                runTimer.stopTimer();
-                renderLoading();
-                return [4 /*yield*/, getNewsContent(select)];
+                timer.stopTimer();
+                _a.label = 1;
             case 1:
+                _a.trys.push([1, 3, 4, 5]);
+                newsModel.updateNewsIndex(select);
+                return [4 /*yield*/, getNewsContent(select)];
+            case 2:
                 selectContent = _a.sent();
                 renderNewsContent(selectContent);
-                runTimer.startTimer();
-                return [2 /*return*/];
+                return [3 /*break*/, 5];
+            case 3:
+                error_1 = _a.sent();
+                console.log("getContent error", error_1);
+                return [3 /*break*/, 5];
+            case 4:
+                timer.startTimer();
+                return [7 /*endfinally*/];
+            case 5: return [2 /*return*/];
         }
     });
 }); };
 export var setEventHandler = function () {
-    var $updateBtn = document.querySelector(".update-button");
-    $updateBtn.addEventListener("click", function () { return __awaiter(void 0, void 0, void 0, function () {
+    var updateBtn = document.querySelector(".update-button");
+    updateBtn.addEventListener("click", function (event) { return __awaiter(void 0, void 0, void 0, function () {
+        var error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!!$updateBtn.disabled) return [3 /*break*/, 2];
-                    $updateBtn.disabled = true;
-                    return [4 /*yield*/, initData()];
+                    updateBtn.disabled = true;
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, 4, 5]);
+                    return [4 /*yield*/, initData()];
+                case 2:
                     _a.sent();
-                    $updateBtn.disabled = false;
-                    _a.label = 2;
-                case 2: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 3:
+                    error_2 = _a.sent();
+                    console.log("initData error", error_2);
+                    return [3 /*break*/, 5];
+                case 4:
+                    updateBtn.disabled = false;
+                    return [7 /*endfinally*/];
+                case 5: return [2 /*return*/];
             }
         });
     }); });

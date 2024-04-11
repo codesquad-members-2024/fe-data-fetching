@@ -8,9 +8,9 @@ const TIMER_END_VALUE = 1
 
 let increase = null;
 const newsModel = new NewsModel();
-const runTimer = RunTimer();
+const timer = Timer();
 
-function RunTimer() {
+function Timer() {
     let timer: number = TIMER_INITIAL;
 
     const startTimer = () => {
@@ -20,13 +20,14 @@ function RunTimer() {
             renderTimer(timer);
             if (timer < TIMER_END_VALUE) {
                 clearInterval(increase);
-                showSelectNews(newsModel.getNextNews());
+                initData()
             } 
         }, TIME_INTERVAL);
     }
 
     const stopTimer = () => {
         clearInterval(increase);
+        renderLoading()
         timer = TIMER_INITIAL;
     }
 
@@ -34,29 +35,36 @@ function RunTimer() {
 }
 
 export const initData = async() => {
-    console.log(11)
-    const titleList = await getNewsTitles()
-    newsModel.setTitleList(titleList)
+    const titleList = await getNewsTitles();
+    newsModel.setTitleList(titleList.sort(() => Math.random() - 0.5))
     renderNewsList(titleList)
-    showSelectNews(newsModel.getNewsData())
+    await showSelectNews(newsModel.getNewsData())
 }
 
 const showSelectNews = async(select: string) => {
-    newsModel.updateNewsIndex(select)
-    runTimer.stopTimer()
-    renderLoading()
-    const selectContent = await getNewsContent(select)
-    renderNewsContent(selectContent)
-    runTimer.startTimer()
+    timer.stopTimer()
+
+    try {
+        newsModel.updateNewsIndex(select)
+        const selectContent = await getNewsContent(select)
+        renderNewsContent(selectContent)
+    } catch(error) {
+        console.log("getContent error", error)
+    } finally {
+        timer.startTimer()
+    }
 }
 
 export const setEventHandler = (): void => {
-    const $updateBtn: HTMLButtonElement = document.querySelector(".update-button")
-    $updateBtn.addEventListener("click", async() => {
-        if (!$updateBtn.disabled) {
-            $updateBtn.disabled = true;
-            await initData()
-            $updateBtn.disabled = false;
+    const updateBtn: HTMLButtonElement = document.querySelector(".update-button")
+    updateBtn.addEventListener("click", async () => {
+        updateBtn.disabled = true;
+        try {
+            await initData();
+        } catch (error) {
+            console.log("initData error", error);
+        } finally {
+            updateBtn.disabled = false;
         }
     });
 
