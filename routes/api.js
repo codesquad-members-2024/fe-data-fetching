@@ -11,7 +11,8 @@ router.get(
       id: article.source.id,
       title: article.title,
     }));
-    res.send(newsTitleList);
+    const shuffledList = newsTitleList.sort(() => Math.random() - 0.5);
+    res.send(shuffledList);
   })
 );
 
