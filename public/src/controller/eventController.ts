@@ -6,12 +6,12 @@ const TIMER_INITIAL = 10
 const TIME_INTERVAL = 1000
 const TIMER_END_VALUE = 1
 
-let increase = null;
 const newsModel = new NewsModel();
 const timer = Timer();
 
 function Timer() {
-    let timer: number = TIMER_INITIAL;
+    let increase = null;
+    let timer = TIMER_INITIAL;
 
     const startTimer = () => {
         renderTimer(timer);
@@ -48,10 +48,9 @@ const showSelectNews = async(select: string) => {
         newsModel.updateNewsIndex(select)
         const selectContent = await getNewsContent(select)
         renderNewsContent(selectContent)
+        timer.startTimer()
     } catch(error) {
         console.log("getContent error", error)
-    } finally {
-        timer.startTimer()
     }
 }
 

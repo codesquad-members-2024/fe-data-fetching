@@ -40,10 +40,10 @@ import { NewsModel } from "../model/newsModel.js";
 var TIMER_INITIAL = 10;
 var TIME_INTERVAL = 1000;
 var TIMER_END_VALUE = 1;
-var increase = null;
 var newsModel = new NewsModel();
 var timer = Timer();
 function Timer() {
+    var increase = null;
     var timer = TIMER_INITIAL;
     var startTimer = function () {
         renderTimer(timer);
@@ -87,27 +87,25 @@ var showSelectNews = function (select) { return __awaiter(void 0, void 0, void 0
                 timer.stopTimer();
                 _a.label = 1;
             case 1:
-                _a.trys.push([1, 3, 4, 5]);
+                _a.trys.push([1, 3, , 4]);
                 newsModel.updateNewsIndex(select);
                 return [4 /*yield*/, getNewsContent(select)];
             case 2:
                 selectContent = _a.sent();
                 renderNewsContent(selectContent);
-                return [3 /*break*/, 5];
+                timer.startTimer();
+                return [3 /*break*/, 4];
             case 3:
                 error_1 = _a.sent();
                 console.log("getContent error", error_1);
-                return [3 /*break*/, 5];
-            case 4:
-                timer.startTimer();
-                return [7 /*endfinally*/];
-            case 5: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
 export var setEventHandler = function () {
     var updateBtn = document.querySelector(".update-button");
-    updateBtn.addEventListener("click", function (event) { return __awaiter(void 0, void 0, void 0, function () {
+    updateBtn.addEventListener("click", function () { return __awaiter(void 0, void 0, void 0, function () {
         var error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
