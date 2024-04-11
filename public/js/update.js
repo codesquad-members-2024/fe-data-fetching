@@ -1,8 +1,10 @@
 import { displayInitialPage } from "./initialPage.js";
+import { activateTitleList } from "./newsListBtn.js";
 
-export function update() {
+export function updateLatestNews() {
   const updateButton = document.querySelector("button");
   updateButton.addEventListener("click", async () => {
-    await displayInitialPage();
+    const newList = await displayInitialPage();
+    activateTitleList(newList);
   });
 }
