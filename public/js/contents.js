@@ -1,6 +1,10 @@
 const createLi = (content) => {
     const { id, title } = content;
-    return `<li id="${id}">${title}</li>`;
+    return `<li id="${id}">
+                <a href="#" class="news_title__link__item" role="tab" aria-selected="false">
+                    <span>${title}</span>
+                </a>
+            </li>`;
 };
 
 const createListHTML = (newsDatas) => {
