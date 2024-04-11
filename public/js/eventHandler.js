@@ -1,12 +1,28 @@
 import getNewsData from './newsDataFetch.js';
 import { createDetailNewsHTML } from './contents.js';
 
+const changeAttrOfSelected = (liTarget) => {
+    const aTag = liTarget.querySelector('a');
+    if (aTag) aTag.setAttribute('aria-selected', 'true');
+
+    Array.from(liTarget.parentNode.children).forEach((li) => {
+        if (li !== liTarget) {
+            const siblingATag = li.querySelector('a');
+            if (siblingATag) siblingATag.setAttribute('aria-selected', 'false');
+        }
+    });
+};
+
 const getArticle = async (e) => {
     const { target } = e;
-    if (!target.closest('li')) return;
+    const liTarget = target.closest('li');
+    if (!liTarget) return;
 
-    const id = target.closest('li').getAttribute('id');
+    changeAttrOfSelected(liTarget);
+
+    const id = liTarget.getAttribute('id');
     const newsData = await getNewsData(id);
+
     createDetailNewsHTML(newsData);
 };
 
