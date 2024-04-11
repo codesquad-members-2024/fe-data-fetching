@@ -26,17 +26,23 @@ function titleEventListener(titleList, newsArticle, data) {
   let clickTitle;
 
   titleList.addEventListener("click", async function (event) {
+    if (clickTitle !== null) {
+      clearTimeout(clickTitle);
+      clickTitle = null; // delay 사용 후 clear 해줄 때 null 처리 꼭 
+    }
+
     const { target } = event;
     if (target.tagName === "P") {
       const index = Array.from(this.children).indexOf(event.target);
       const { title, description } = data[index];
       newsArticle.innerHTML = `<div class="loading-text">Loading ...</div>`;
 
-      clearTimeout(clickTitle);
+      const delay = (ms) => new Promise((resolve) => {
+          clickTitle = setTimeout(resolve, ms);
+        });
 
-      clickTitle = setTimeout(() => {
-        newsArticle.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
-      }, 3000);
+      await delay(3000);
+      newsArticle.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
     }
   });
 }
