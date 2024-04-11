@@ -1,42 +1,44 @@
-function getNewsData() {
-  fetch("/news")
-    .then((response) => response.json())
-    .then((data) => {
-      const shuffle = () => Math.random() - 0.5;
-      const shuffledData = data.articles.sort(shuffle);
+async function getNewsData() {
+  try {
+    const response = await fetch("/news");
+    const data = await response.json();
 
-      const titleList = document.querySelector(".title-list");
-      const newsArticle = document.querySelector(".news-article");
+    const shuffle = () => Math.random() - 0.5;
+    const shuffledData = data.articles.sort(shuffle);
 
-      shuffledData.forEach((item) => {
-        titleList.innerHTML += `<p>${item.title}</p>`;
-      });
+    const titleList = document.querySelector(".title-list");
+    const newsArticle = document.querySelector(".news-article");
 
-      titleEventListener(titleList, newsArticle, shuffledData);
+    shuffledData.forEach((item) => {
+      titleList.innerHTML += `<p>${item.title}</p>`;
+    });
 
-      const firstPTag = titleList.querySelectorAll("p")[0];
-      firstPTag.click();
-    })
-    .catch((error) => console.error("Error fetching news:", error));
+    titleEventListener(titleList, newsArticle, shuffledData);
+
+    const firstPTag = titleList.querySelectorAll("p")[0];
+    firstPTag.click();
+  } catch (error) {
+    console.error("Error fetching news:", error);
+  }
 }
 
 function titleEventListener(titleList, newsArticle, data) {
-  let click;
+  let clickTitle;
 
-  titleList.addEventListener("click", function (event) {
-    if (event.target.tagName === "P") {
+  titleList.addEventListener("click", async function (event) {
+    const { target } = event;
+    if (target.tagName === "P") {
       const index = Array.from(this.children).indexOf(event.target);
-      const title = data[index].title;
-      const clicked = data[index].description;
+      const { title, description } = data[index];
       newsArticle.innerHTML = `<div class="loading-text">Loading ...</div>`;
 
-      clearTimeout(click);
+      clearTimeout(clickTitle);
 
-      click = setTimeout(() => {
-        newsArticle.innerHTML = `<h3>${title}</h3><p>${clicked}</p>`;
+      clickTitle = setTimeout(() => {
+        newsArticle.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
       }, 3000);
     }
   });
 }
 
-export default getNewsData ;
+export default getNewsData;

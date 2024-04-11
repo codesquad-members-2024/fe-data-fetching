@@ -11,7 +11,8 @@ body {
   padding: 10px;
   display: flex;
   width: 900px;
-  height: 600px;
+  height: 650px;
+  margin: 50px;
 }
 
 .loading-icon {
@@ -28,7 +29,7 @@ body {
 }
 
 .update {
-  height: 50px;
+  height: 60px;
   width: 100%;
   background-color: rgb(128, 100, 251);
   border: none;
@@ -38,9 +39,14 @@ body {
   cursor: pointer;
 }
 
+.timer {
+  height: 40px;
+  align-content: center;
+  text-align: right;
+}
+
 .title-list {
-  height: 530px;
-  margin-top: 20px;
+  height: 550px;
   p {
     white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈 방지 */
     overflow: hidden;
@@ -83,7 +89,7 @@ body {
   font-size: 2rem;
 }
 
-.modal { 
+.modal {
   content: "";
   display: block;
   position: absolute;
