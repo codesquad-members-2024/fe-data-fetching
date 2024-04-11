@@ -1,0 +1,24 @@
+/* view */
+@import "./view/news-header.css";
+@import "./view/news-main.css";
+
+/* components */
+@import "./components/reset.css";
+@import "./components/components.css";
+
+@import "./constants/variables.css";
+
+body {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	font-family: serif;
+	background-color: var(--main-background);
+}
+
+.news {
+	width: 1000px;
+	height: 600px;
+	border: 2.5px solid var(--black);
+	flex-direction: column;
+}

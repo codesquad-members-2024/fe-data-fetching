@@ -1,0 +1,28 @@
+.news-header {
+	width: 90%;
+	height: 10%;
+	border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+
+.news-header__refresh {
+	border: none;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	border-radius: 3px;
+	font-size: 20px;
+	background-color: var(--main-background);
+	cursor: pointer;
+	width: 145px;
+	height: 35px;
+	margin: 0px 10px 0px 70px;
+	box-shadow: 3px 0.5px 7px black;
+	transition: all 0.3s ease-in-out;
+	&:hover {
+		font-weight: 600;
+		font-size: 22px;
+		box-shadow: 0px 0px 0px black;
+	}
+}
+
+.news-header__timer {
+	font-size: 12px;
+}

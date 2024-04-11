@@ -1,0 +1,9 @@
+{
+	"include": ["public/ts"],
+	"compilerOptions": {
+		"outDir": "public/js",
+		"target": "ES6",
+		"lib": ["ES6", "DOM"],
+		"strict": true
+	}
+}
