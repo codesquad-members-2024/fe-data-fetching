@@ -1,6 +1,6 @@
 import { toggleLoading } from "./loading.js";
 import { delay, fetchData } from "./utils.js";
-import { displayNewsList, displayNewsContent } from "./render.js";
+import { displayNewsList, displayNewsContent, displayTimer } from "./render.js";
 
 export async function displayInitialPage() {
   toggleLoading(true);
@@ -9,6 +9,7 @@ export async function displayInitialPage() {
   const firstNewsId = newsTitleList[0].id;
   const selectedNews = await fetchData(`/api/news/${firstNewsId}`);
   toggleLoading(false);
+  displayTimer();
   displayNewsList(newsTitleList, firstNewsId);
   displayNewsContent(selectedNews);
   return newsTitleList;

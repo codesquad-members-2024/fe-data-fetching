@@ -17,3 +17,14 @@ export function displayNewsContent(selectedNews) {
     <p>${selectedNews.content}</p>`;
   newsContent.innerHTML = newsContentHtml;
 }
+
+let seconds = 60;
+let timer;
+
+export function displayTimer() {
+  timer = setInterval(() => {
+    const timerBox = document.querySelector(".timer");
+    timerBox.textContent = `${seconds--}초 뒤에 자동 업데이트`;
+    if (seconds < 0) clearInterval(timer);
+  }, 1000);
+}

@@ -19,6 +19,12 @@ main button {
   font-size: 20px;
 }
 
+.timer {
+  width: 90%;
+  text-align: right;
+  margin-top: 1rem;
+}
+
 ul {
   border-radius: 20px;
   padding: 30px 20px;
@@ -54,6 +60,11 @@ li.selected {
   padding: 30px 40px;
   background-color: rgb(245, 248, 249);
   border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.news-content-box p {
+  line-height: 1.7rem;
 }
 
 .news-title-box {
