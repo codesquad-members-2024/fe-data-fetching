@@ -5,16 +5,21 @@
     --back-color: bisque;
     --default-box-color: #f4f8f9;
     --default-font-color: aliceblue;
-    --link-color: #00b7ff;
+    --default-link-color: rgb(19, 19, 19);
+    --link-hover-color: #00b7ff;
     --description-color: red;
 }
 
 body {
     font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
-
 a {
-    color: var(--link-color);
+    text-decoration-line: none;
+    color: var(--default-link-color);
+}
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: none;
 }
 
 *,
