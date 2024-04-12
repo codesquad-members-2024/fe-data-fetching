@@ -43,6 +43,7 @@ body {
   height: 40px;
   align-content: center;
   text-align: right;
+  color: rgb(128, 100, 251);
 }
 
 .title-list {
@@ -61,7 +62,8 @@ body {
 
 .title-list,
 .news-article {
-  background-color: rgb(210, 200, 255);
+  background-color: rgb(238, 235, 255);
+  border: 1px solid rgb(128, 100, 251);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
