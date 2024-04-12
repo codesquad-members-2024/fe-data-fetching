@@ -18,25 +18,39 @@
 		text-overflow: ellipsis;
 		font-size: 12px;
 		font-weight: 600;
+		& a {
+			cursor: pointer;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 }
 
-.news-main__news {
+.news-main__des {
 	width: 75%;
 	height: 100%;
 	border: var(--main-border);
 }
 
-.news-main__news__title {
+.news-main__des__title {
 	margin: 30px;
-	font-size: 24px;
+	font-size: 22px;
 	font-weight: 900;
 }
 
-.news-main__news__main {
+.news-main__des__main {
 	margin: 0px 30px;
+	line-height: 1.4;
 	&::first-letter {
-		font-size: 18px;
+		font-size: 20px;
 		font-weight: 600;
 	}
+}
+
+.news-main__des__more {
+	margin: 30px;
+	font-weight: 600;
+	cursor: pointer;
+	text-decoration: underline;
 }

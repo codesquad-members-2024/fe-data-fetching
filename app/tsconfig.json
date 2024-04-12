@@ -2,8 +2,9 @@
 	"include": ["public/ts"],
 	"compilerOptions": {
 		"outDir": "public/js",
-		"target": "ES6",
-		"lib": ["ES6", "DOM"],
+		"module": "esnext",
+		"target": "es2017",
+		"lib": ["es2017", "DOM"],
 		"strict": true
 	}
 }

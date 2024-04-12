@@ -1,6 +1,7 @@
 /* view */
 @import "./view/news-header.css";
 @import "./view/news-main.css";
+@import "./view/loading.css";
 
 /* components */
 @import "./components/reset.css";

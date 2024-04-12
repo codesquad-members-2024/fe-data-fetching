@@ -8,3 +8,4 @@ interface NewsItem {
 	url: string;
 	urlToImage: string;
 }
+
