@@ -3,6 +3,7 @@ import { createDetailNewsHTML } from './contents.js';
 import getNewsSequence from './newsDataUpdate.js';
 
 let setTimeoutId = null;
+let setIntervalId = null;
 
 // -   <b>자동 업데이트</b>
 // -   [ ] 전체 뉴스 정보는 3초마다 자동으로 갱신된다.
@@ -49,4 +50,12 @@ const eventHandler = () => {
     document.querySelector('#update-btn').addEventListener('click', getNewsSequence);
 };
 
-export { eventHandler };
+const autoUpdate = () => {
+    if (setIntervalId !== null) {
+        clearInterval(setIntervalId);
+    }
+    setIntervalId = setInterval(async () => {
+        await getNewsSequence();
+    }, 3000);
+};
+export { eventHandler, autoUpdate };
