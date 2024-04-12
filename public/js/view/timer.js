@@ -5,9 +5,9 @@ function updateTimer(seconds) {
   timerElement.textContent = `${seconds}초 뒤에 업데이트`;
 }
 
+const timerDelay = new Delay();
 async function countdown() {
   let seconds = 60;
-  const timerDelay = new Delay();
 
   updateTimer(seconds);
 

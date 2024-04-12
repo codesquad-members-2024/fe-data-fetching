@@ -38,4 +38,10 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
+app.get("/error", function(req, res, next) {
+  const err = new Error("Test error from route");
+  err.status = 500;
+  next(err);
+});
+
 module.exports = app;
