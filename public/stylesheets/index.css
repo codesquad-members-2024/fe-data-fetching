@@ -68,7 +68,7 @@ li {
 }
 
 .update-button:disabled {
-    background-color: rgb(168, 202, 244); /* 흐린 색상의 배경 적용 */
+    background-color: rgb(168, 202, 244);
 }
 
 .current-second {

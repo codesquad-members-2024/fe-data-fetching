@@ -4,7 +4,12 @@ import newsContents from "../public/src/data/newsContents.json" assert{ type: "j
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
-    res.json(newsContents);
+    try{
+        res.set('Cache-Control', 'public, max-age=30')
+        res.json(newsContents);
+    } catch (error) {
+        console.log("Cache error", error)
+    }
 });
 
 export default router;
