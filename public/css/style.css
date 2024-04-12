@@ -12,14 +12,7 @@
     --gradation-blue2: rgb(73, 125, 189);
     --gradation-blue1: rgb(28, 58, 148);
 
-    --gradation-back-color: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.44, var(--gradation-blue1)),
-        color-stop(0.72, var(--gradation-blue2)),
-        color-stop(0.86, var(--gradation-blue3))
-    );
+    --gradation-back-color: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, var(--gradation-blue1)), color-stop(0.72, var(--gradation-blue2)), color-stop(0.86, var(--gradation-blue3)));
 }
 
 body {
@@ -90,6 +83,8 @@ li {
 #update-Description {
     color: var(--description-color);
     text-align: end;
+    font-size: 12px;
+    margin: 2px;
 }
 
 .section__right__article {
