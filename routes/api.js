@@ -12,6 +12,7 @@ router.get(
       title: article.title,
     }));
     const shuffledList = newsTitleList.sort(() => Math.random() - 0.5);
+    res.setHeader("Cache-Control", "public, max-age=30");
     res.send(shuffledList);
   })
 );
