@@ -31,6 +31,7 @@ const changeAttrOfSelected = (liTarget) => {
 };
 
 const getArticle = async (e) => {
+    autoUpdate();
     const { target } = e;
     const liTarget = target.closest('li');
     if (!liTarget) return;
