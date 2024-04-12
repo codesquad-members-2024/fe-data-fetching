@@ -2,12 +2,11 @@ import getNewsData from './newsDataFetch.js';
 import { createDetailNewsHTML } from './contents.js';
 import getNewsSequence from './newsDataUpdate.js';
 
+const AUTO_UPDATE_MILLISEC = 3000;
 let setTimeoutId = null;
-let setIntervalId = null;
-
-// -   <b>자동 업데이트</b>
-// -   [ ] 전체 뉴스 정보는 3초마다 자동으로 갱신된다.
-// -   [ ] 다음 갱신 시간까지 타이머가 동작되어 초단위로 화면에 노출된다.
+let updateIntervalId = null;
+let countdownIntervalId = null;
+let secUntilUpdate = (AUTO_UPDATE_MILLISEC / 1000) % 60;
 
 const delay = (ms) =>
     new Promise((resolve) => {
@@ -51,12 +50,30 @@ const eventHandler = () => {
     document.querySelector('#update-btn').addEventListener('click', getNewsSequence);
 };
 
-const autoUpdate = () => {
-    if (setIntervalId !== null) {
-        clearInterval(setIntervalId);
-    }
-    setIntervalId = setInterval(async () => {
-        await getNewsSequence();
-    }, 3000);
+const displayCountdown = () => {
+    const descrptionTarget = document.querySelector('#update-sec');
+
+    if (countdownIntervalId !== null) clearInterval(countdownIntervalId);
+
+    secUntilUpdate = (AUTO_UPDATE_MILLISEC / 1000) % 60;
+    descrptionTarget.innerHTML = secUntilUpdate;
+
+    countdownIntervalId = setInterval(() => {
+        secUntilUpdate--;
+        descrptionTarget.innerHTML = secUntilUpdate;
+        if (secUntilUpdate <= 0) clearInterval(countdownIntervalId);
+    }, 1000);
 };
-export { eventHandler, autoUpdate };
+
+const autoUpdate = () => {
+    if (updateIntervalId !== null) {
+        clearInterval(updateIntervalId);
+    }
+
+    displayCountdown();
+
+    updateIntervalId = setInterval(async () => {
+        await getNewsSequence();
+    }, AUTO_UPDATE_MILLISEC);
+};
+export { eventHandler, autoUpdate, displayCountdown };

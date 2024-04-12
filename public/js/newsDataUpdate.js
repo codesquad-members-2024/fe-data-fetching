@@ -1,6 +1,6 @@
 import getNewsData from './newsDataFetch.js';
 import { createListHTML, createDetailNewsHTML } from './contents.js';
-import { eventHandler } from './eventHandler.js';
+import { eventHandler, displayCountdown } from './eventHandler.js';
 
 const getNewsSequence = async () => {
     const { status, articles: newsData } = await getNewsData();
@@ -10,6 +10,7 @@ const getNewsSequence = async () => {
         createDetailNewsHTML(newsData[0]);
     }
     eventHandler();
+    displayCountdown();
 };
 
 export default getNewsSequence;

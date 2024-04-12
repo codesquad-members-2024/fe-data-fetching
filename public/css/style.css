@@ -74,10 +74,10 @@ li {
 
 #update-btn {
     width: 100%;
-    /* background-color: #245c75; */
     font-weight: bold;
     color: var(--default-font-color);
     height: 30px;
+    cursor: pointer;
 }
 #update-btn {
     border-radius: 10px;
