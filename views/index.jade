@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Document
+    link(href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css", rel="stylesheet")
+    link(rel="stylesheet", href="stylesheets/style.css")
+    script(src="https://kit.fontawesome.com/240a2c8606.js", crossorigin="anonymous")
+    script(src="javascripts/index.js") 
+  body
+    .wrap
+      header
+        h1.title NEWS
+      main.content
+        article
+          .inner
+            button.button-update UPDATE
+            // 서버사이드 랜더링: title-list
+            .title-list
+              a(href="#") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+              a(href="#") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+              a(href="#") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+              a(href="#") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+              a(href="#") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+        section.news-article
+          .inner
+            // 서버사이드 랜더링 : news-article-content
+            .news-article-content
+              h3 headline
+              p.article Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla commodi dolores fugit minus odio repellat atque molestiae quam eveniet optio assumenda deserunt impedit, quidem doloremque dicta debitis. Fuga, nemo quo.
+    
