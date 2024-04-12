@@ -5,7 +5,7 @@ const catchAsync = require("../utils/catchAsync.js");
 
 router.get(
   "/news/list",
-  catchAsync(async (req, res) => {
+  catchAsync(async (req, res, next) => {
     const newsData = parseJsonData("../data/headlines.json");
     const newsTitleList = newsData.articles.map((article) => ({
       id: article.source.id,
@@ -19,13 +19,17 @@ router.get(
 
 router.get(
   "/news/:id",
-  catchAsync(async (req, res) => {
+  catchAsync(async (req, res, next) => {
     const { id } = req.params;
     const newsData = parseJsonData("../data/headlines.json");
     const news = newsData.articles.find(
       (article) => String(article.source.id) === id
     );
-    res.send(news);
+    if (Math.random() < 0.3) {
+      throw new Error("Something went wrong!");
+    } else {
+      res.send(news);
+    }
   })
 );
 
