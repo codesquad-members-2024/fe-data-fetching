@@ -1,6 +1,6 @@
-import getNewsData from "./news.js";
-import onEvent from "./onEvent.js";
-import countdown from "./timer.js";
+import getNewsData from "./view/news.js";
+import onEvent from "./view/onEvent.js";
+import countdown from "./view/timer.js";
 
 function main() {
   onEvent();

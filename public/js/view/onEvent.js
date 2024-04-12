@@ -18,9 +18,6 @@ async function handleUpdate() {
   wrap.appendChild(modal);
   wrap.appendChild(loadingIcon);
 
-  // wrap.innerHTML += `<div class="modal"></div><img class="loading-icon" src="../img/loding.gif"></img>`;
-  // 이렇게 기존 HTML에 문자열을 추가하면 이벤트가 한번만 작동됨
-
   await delay(3000);
 
   getNewsData();
