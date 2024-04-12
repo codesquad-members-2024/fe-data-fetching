@@ -5,8 +5,10 @@ const router = express.Router();
 // res.render 함수 : 서버에서 HTML 뷰를 렌더링하기 위해 사용 (템플릿에 변수를 전달)
 // res.json 함수 : JSON 데이터를 클라이언트에게 전송하기 위해 사용
 
-const sliceNewsData = (newsData) => {
-    newsData.articles = newsData.articles.slice(0, 9);
+const shuffleArticles = (articles) => articles.sort(() => 0.5 - Math.random());
+
+const randomSliceNewsData = (newsData) => {
+    newsData.articles = shuffleArticles(newsData.articles).slice(0, 9);
     return newsData;
 };
 
@@ -20,7 +22,7 @@ router.get('/', function (req, res, next) {
         return;
     }
 
-    const LimitNewsData = sliceNewsData(newsData);
+    const LimitNewsData = randomSliceNewsData(newsData);
     res.json(LimitNewsData);
 });
 
