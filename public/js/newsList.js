@@ -22,7 +22,13 @@ function getNewsList() {
                     const title = document.createElement('span');
                     title.classList.add('title');
                     title.textContent = news.title;
-                    title.addEventListener('click', () => fetchNewsContent(news.id));
+                    title.addEventListener('click', () => {
+                        fetchNewsContent(news.id);
+                        if (title.classList.contains('active')) {
+                            title.classList.remove('active');
+                        }
+                        title.classList.add('active');
+                    });
                     titleContainer.appendChild(title);
                 }
                 if (index === 0) {
@@ -44,7 +50,10 @@ function fetchNewsContent(id) {
         if (articleContainer) {
             articleContainer.innerHTML = `
 		<h3>${newsArticle === null || newsArticle === void 0 ? void 0 : newsArticle.title}</h3>
-		<p class="article">${newsArticle === null || newsArticle === void 0 ? void 0 : newsArticle.description}</p>
+		${(newsArticle === null || newsArticle === void 0 ? void 0 : newsArticle.urlToImage)
+                ? `<img src="${newsArticle === null || newsArticle === void 0 ? void 0 : newsArticle.urlToImage}" alt="news-image" class="news-image"  onerror="this.style.display='none';">`
+                : ''}
+		<p class="article">${newsArticle === null || newsArticle === void 0 ? void 0 : newsArticle.content}</p>
 		`;
         }
     });

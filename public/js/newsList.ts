@@ -5,7 +5,6 @@ interface Article {
 	id: number;
 	author: string;
 	title: string;
-	description: string;
 	url: string;
 	urlToImage: string;
 	publishedAt: string;
@@ -26,7 +25,13 @@ async function getNewsList() {
 					const title = document.createElement('span');
 					title.classList.add('title');
 					title.textContent = news.title;
-					title.addEventListener('click', () => fetchNewsContent(news.id));
+					title.addEventListener('click', () => {
+						fetchNewsContent(news.id);
+						if (title.classList.contains('active')) {
+							title.classList.remove('active');
+						}
+						title.classList.add('active');
+					});
 					titleContainer.appendChild(title);
 				}
 				if (index === 0) {
@@ -47,7 +52,12 @@ async function fetchNewsContent(id: number) {
 	if (articleContainer) {
 		articleContainer.innerHTML = `
 		<h3>${newsArticle?.title}</h3>
-		<p class="article">${newsArticle?.description}</p>
+		${
+			newsArticle?.urlToImage
+				? `<img src="${newsArticle?.urlToImage}" alt="news-image" class="news-image"  onerror="this.style.display='none';">`
+				: ''
+		}
+		<p class="article">${newsArticle?.content}</p>
 		`;
 	}
 }
