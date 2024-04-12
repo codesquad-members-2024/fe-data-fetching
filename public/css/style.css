@@ -2,7 +2,7 @@
 
 :root {
     /* color */
-    --back-color: bisque;
+    --back-color: #dde6f3;
     --default-box-color: #f4f8f9;
     --default-font-color: aliceblue;
     --default-link-color: rgb(19, 19, 19);
@@ -42,6 +42,10 @@ main {
 li {
     list-style: none;
     margin: 0px 20px 0 20px;
+}
+
+.selected {
+    font-weight: bold;
 }
 
 .display-row {
