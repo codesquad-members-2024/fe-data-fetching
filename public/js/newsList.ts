@@ -27,10 +27,6 @@ async function getNewsList() {
 					title.textContent = news.title;
 					title.addEventListener('click', () => {
 						fetchNewsContent(news.id);
-						if (title.classList.contains('active')) {
-							title.classList.remove('active');
-						}
-						title.classList.add('active');
 					});
 					titleContainer.appendChild(title);
 				}
