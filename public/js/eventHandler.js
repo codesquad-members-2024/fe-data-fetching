@@ -1,6 +1,17 @@
 import getNewsData from './newsDataFetch.js';
 import { createDetailNewsHTML } from './contents.js';
 
+let setTimeoutId = null;
+
+const delay = (ms) =>
+    new Promise((resolve) => {
+        if (setTimeoutId !== null) {
+            clearTimeout(setTimeoutId);
+        }
+
+        setTimeoutId = setTimeout(resolve, ms);
+    });
+
 const changeAttrOfSelected = (liTarget) => {
     const aTag = liTarget.querySelector('a');
     if (aTag) aTag.setAttribute('aria-selected', 'true');
@@ -23,6 +34,8 @@ const getArticle = async (e) => {
     const id = liTarget.getAttribute('id');
     const newsData = await getNewsData(id);
 
+    createDetailNewsHTML({ content: 'loading..' });
+    await delay(1500);
     createDetailNewsHTML(newsData);
 };
 
