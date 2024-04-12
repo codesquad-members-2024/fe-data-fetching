@@ -27,9 +27,8 @@ router.get(
     );
     if (Math.random() < 0.3) {
       throw new Error("Something went wrong!");
-    } else {
-      res.send(news);
     }
+    res.send(news);
   })
 );
 

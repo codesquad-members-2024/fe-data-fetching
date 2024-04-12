@@ -4,8 +4,8 @@ const catchAsync = require("../utils/catchAsync.js");
 
 router.get(
   "/",
-  catchAsync(async (req, res) => {
-    if (Math.random() < 0.3) {
+  catchAsync(async (req, res, next) => {
+    if (Math.random() < 0.5) {
       throw new Error("500에러 발생!!!");
     } else {
       res.render("home");
