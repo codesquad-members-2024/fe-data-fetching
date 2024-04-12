@@ -37,7 +37,8 @@ article {
 }
 .title-list {
 	padding-top: 30px;
-	a {
+	span.title {
+		cursor: pointer;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
