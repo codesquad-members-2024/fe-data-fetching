@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "moduleDetection": "force", // 타입스크립트는 모든 ts 파일을 하나의 모듈, 즉 전역 모듈로 보기 때문에 블록 범위 변수 오류 발생
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
